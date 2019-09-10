@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:imeOptions="actionNext"
+            app:counterEnabled="true"
+            app:counterMaxLength="32"
+            app:hintTextAppearance="@style/login_hintAppearance">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_et_selector_bg"
+                android:hint="输入手机号检测"
+                android:text="17320378800"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="32"
+                android:textCursorDrawable="@drawable/login_et_cursor_color"
+                android:textSize="16sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/but_phone"
+            android:text="是否注册（Get）"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:imeOptions="actionNext"
+            app:counterEnabled="true"
+            app:counterMaxLength="32"
+            app:hintTextAppearance="@style/login_hintAppearance">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_et_selector_bg"
+                android:hint="输入姓名检测"
+                android:text="骆"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="32"
+                android:textCursorDrawable="@drawable/login_et_cursor_color"
+                android:textSize="16sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/but_name"
+            android:text="查找宗亲（Post）"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/but_json"
+        android:text="上传json（json）"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/but_form"
+        android:text="图片上传（不带参，可多图）"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_herd"
+            android:layout_margin="10dp"
+            android:layout_width="120dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:background="#e8e8e8"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_out_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_et_selector_bg"
+                android:padding="7dp"
+                android:hint="随意输入昵称"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="32"
+                android:textCursorDrawable="@drawable/login_et_cursor_color"
+                android:textSize="16sp" />
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_out_depict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_et_selector_bg"
+                android:padding="7dp"
+                android:hint="随意输入描述"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="32"
+                android:textCursorDrawable="@drawable/login_et_cursor_color"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/but_create"
+                android:text="图片带参上传（可多图）"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

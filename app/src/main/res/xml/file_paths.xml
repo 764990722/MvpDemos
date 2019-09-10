@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path name="my_images" path="Pictures"/>
+    <!--<root-path name="root_path" path="."/>-->
+    <!--解决7.0系统异常-->
+    <external-path name="external_files" path="." />
+</paths>
