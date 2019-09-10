@@ -33,7 +33,7 @@ import retrofit2.http.Url;
  * 注解@FormUrlEncoded对所传地址进行编码解析
  */
 public interface APIService {
-    /*以上接口由血源派App提供*/
+    /*以上接口由血源派App测试服务器提供*/
     //////////////////POST/////////////////////
     //////////////////POST/////////////////////
     /*密码登录*/
