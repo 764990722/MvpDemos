@@ -1,16 +1,15 @@
 package com.example.azheng.rxjavamvpdemo.contract;
 
 import com.example.azheng.rxjavamvpdemo.base.BaseView;
+import com.example.azheng.rxjavamvpdemo.bean.BaseArrayBean;
 import com.example.azheng.rxjavamvpdemo.bean.BaseObjectBean;
+import com.example.azheng.rxjavamvpdemo.bean.BeanFamily;
 import com.example.azheng.rxjavamvpdemo.bean.BeanPhone;
 import com.example.azheng.rxjavamvpdemo.bean.BeanZqin;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
@@ -23,6 +22,8 @@ import okhttp3.RequestBody;
 public interface HoneContract {
     interface Model {
         Flowable<BaseObjectBean<BeanPhone>> phone(String phone);
+        Flowable<BaseArrayBean<BeanFamily>> family();
+        Flowable<BaseObjectBean> delete(String number,int position);
         Flowable<BaseObjectBean<BeanZqin>> name(String name);
         Flowable<BaseObjectBean> getAds(RequestBody requestBody);
         Flowable<BaseObjectBean> uploadFile(MultipartBody.Part body);
@@ -49,6 +50,10 @@ public interface HoneContract {
 
         void onSuccess4(BaseObjectBean bean);//多图上传
 
+        void onSuccess5(BaseArrayBean<BeanFamily> bean);//家庭圈列表
+
+        void onSuccess6(BaseObjectBean bean);//解散家庭圈
+
         void onFailed(String msg);
     }
 
@@ -57,6 +62,16 @@ public interface HoneContract {
          * 检查手机号
          */
         void phone(String phone);
+
+        /**
+         * 家庭圈列表
+         */
+        void family();
+
+        /**
+         * 解散家庭圈
+         */
+        void delete(String number,int position);
 
         /**
          * 查找宗亲

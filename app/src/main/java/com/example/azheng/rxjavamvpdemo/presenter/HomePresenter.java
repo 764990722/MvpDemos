@@ -1,7 +1,6 @@
 package com.example.azheng.rxjavamvpdemo.presenter;
 
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -12,14 +11,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.azheng.rxjavamvpdemo.R;
+import com.example.azheng.rxjavamvpdemo.adapter.FamilyAdapter;
 import com.example.azheng.rxjavamvpdemo.base.BasePresenter;
+import com.example.azheng.rxjavamvpdemo.bean.BaseArrayBean;
 import com.example.azheng.rxjavamvpdemo.bean.BaseObjectBean;
+import com.example.azheng.rxjavamvpdemo.bean.BeanFamily;
 import com.example.azheng.rxjavamvpdemo.bean.BeanPhone;
 import com.example.azheng.rxjavamvpdemo.bean.BeanZqin;
 import com.example.azheng.rxjavamvpdemo.contract.HoneContract;
@@ -39,12 +44,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.functions.Consumer;
 import okhttp3.MediaType;
@@ -63,6 +63,11 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
     public HomePresenter() {
         model = new HomeModel();
     }
+
+    private FamilyAdapter bookAdapter;
+    private boolean IsMulti;
+    private int Number;
+
 
     /*检查手机号*/
     @Override
@@ -99,6 +104,76 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
                 });
     }
 
+    /*家庭圈列表*/
+    @Override
+    public void family() {
+        if (!isViewAttached()) {
+            return;
+        }
+        mView.showLoading();
+        model.family()
+                .compose(RxScheduler.<BaseArrayBean<BeanFamily>>Flo_io_main())
+                .as(mView.<BaseArrayBean<BeanFamily>>bindAutoDispose())
+                .subscribe(new Consumer<BaseArrayBean<BeanFamily>>(){
+                    @Override
+                    public void accept(BaseArrayBean<BeanFamily> bean) throws Exception {
+                        mView.hideLoading();
+                        if (bean!=null){
+                            switch (bean.getCode()){
+                                case "000":
+                                    mView.onSuccess5(bean);
+                                    break;
+                                default:
+                                    mView.onFailed(bean.getMsg());
+                                    break;
+                            }
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.onError(throwable);
+                        mView.hideLoading();
+                    }
+                });
+    }
+
+    /*解散家庭圈*/
+    @Override
+    public void delete(String number,final int position) {
+        if (!isViewAttached()) {
+            return;
+        }
+        mView.showLoading();
+        model.delete(number,position)
+                .compose(RxScheduler.<BaseObjectBean>Flo_io_main())
+                .as(mView.<BaseObjectBean>bindAutoDispose())
+                .subscribe(new Consumer<BaseObjectBean>(){
+                    @Override
+                    public void accept(BaseObjectBean bean) throws Exception {
+                        mView.hideLoading();
+                        if (bean!=null){
+                            switch (bean.getCode()){
+                                case "000":
+                                    mView.onSuccess6(bean);
+                                    if (bookAdapter!=null){
+                                        bookAdapter.removeList(position);
+                                    }
+                                    break;
+                                default:
+                                    mView.onFailed(bean.getMsg());
+                                    break;
+                            }
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.onError(throwable);
+                        mView.hideLoading();
+                    }
+                });
+    }
 
 
     /*查找宗亲*/
@@ -240,8 +315,6 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
                 });
     }
 
-    private boolean IsMulti;
-    private int Number;
     public void getFrom(Activity activity,boolean IsMulti,int Number) {
         this.IsMulti = IsMulti;
         this.Number = Number;
@@ -276,9 +349,8 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
                 }catch (Exception e){}
             }
         }
-        Bitmap headShot = null;
         try {
-            headShot = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(cropImageUri));
+            Bitmap headShot = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(cropImageUri));
             if (headShot != null) {
                 saveBitmap(headShot,imgsPath);
                 iv_herd.setImageBitmap(headShot);
@@ -303,6 +375,37 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
             }
         }
     }
+
+
+    public void familyList(final Activity activity, RecyclerView rv_mr_all, final BaseArrayBean<BeanFamily> bean){
+        rv_mr_all.setFocusable(true);//解决显示位置
+        rv_mr_all.setNestedScrollingEnabled(true);
+        rv_mr_all.setLayoutManager(new LinearLayoutManager(activity));
+        bookAdapter = new FamilyAdapter(bean.getData(),activity);
+        rv_mr_all.setAdapter(bookAdapter);
+        bookAdapter.buttonSetOnclick(new FamilyAdapter.ButtonInterface() {
+            @Override
+            public void onclick(View view, int position) {
+                Toast.makeText(activity, "单点下标："+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bookAdapter.setOnRecyclerViewItemClickListener(new FamilyAdapter.OnItemClickListener() {
+            @Override
+            public void onLongClick(int position) {
+                Toast.makeText(activity, "长按下标："+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bookAdapter.DeleteOnclick(new FamilyAdapter.DeleteInterface() {
+            @Override
+            public void onclick(View view, int position) {
+                BeanFamily data = (BeanFamily) bean.getData().get(position);
+                delete(data.getNumber(),position);
+            }
+        });
+    }
+
 
     private void FileImage(List<String> imgsPath, String name, String precept) {
         for (String pathItem : imgsPath) {
@@ -436,5 +539,13 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
         }
     }
 
+    public void inMore(TextInputEditText edit_out_name, TextInputEditText edit_out_depict, Activity activity) {
+        //isEmpty是否有元素  true为没有
+        if (TextUtils.isEmpty(edit_out_name.getText())){
+            Toast.makeText(activity, "昵称不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        getFrom(activity,true,1);
+    }
 
 }

@@ -11,6 +11,7 @@
 该demo采用mvp模式
 封装好基本请求get post
 支持json请求，表单上传；
+RecyclerView 列表，自定义单点 长按事件
 
 用到第三方动态权限，相册加载
 

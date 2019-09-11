@@ -1,7 +1,9 @@
 package com.example.azheng.rxjavamvpdemo.model;
 
 
+import com.example.azheng.rxjavamvpdemo.bean.BaseArrayBean;
 import com.example.azheng.rxjavamvpdemo.bean.BaseObjectBean;
+import com.example.azheng.rxjavamvpdemo.bean.BeanFamily;
 import com.example.azheng.rxjavamvpdemo.bean.BeanPhone;
 import com.example.azheng.rxjavamvpdemo.bean.BeanZqin;
 import com.example.azheng.rxjavamvpdemo.contract.HoneContract;
@@ -22,6 +24,16 @@ public class HomeModel implements HoneContract.Model {
     @Override
     public Flowable<BaseObjectBean<BeanPhone>> phone(String phone) {
         return RetrofitClient.getInstance().getApi("1.0.0").phone(phone);
+    }
+
+    @Override
+    public Flowable<BaseArrayBean<BeanFamily>> family() {
+        return RetrofitClient.getInstance().getApi("1.0.0").family();
+    }
+
+    @Override
+    public Flowable<BaseObjectBean> delete(String number,int position) {
+        return RetrofitClient.getInstance().getApi("1.0.0").delete(number);
     }
 
     @Override

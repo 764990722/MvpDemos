@@ -34,6 +34,8 @@
     <color name="color_login_btn_bg">#FE9B00</color>
     <!--登录界面 忘记密码 新用户注册 文字的颜色-->
     <color name="color_login_text">#FE9B00</color>
+    <!--一级字体颜色-->
+    <color name="main_def_text_color33">#323232</color>
 
 
 </resources>

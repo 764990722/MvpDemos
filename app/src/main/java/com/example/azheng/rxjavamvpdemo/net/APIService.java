@@ -1,17 +1,16 @@
 package com.example.azheng.rxjavamvpdemo.net;
 
 
+import com.example.azheng.rxjavamvpdemo.bean.BaseArrayBean;
 import com.example.azheng.rxjavamvpdemo.bean.BaseObjectBean;
+import com.example.azheng.rxjavamvpdemo.bean.BeanFamily;
 import com.example.azheng.rxjavamvpdemo.bean.BeanPhone;
 import com.example.azheng.rxjavamvpdemo.bean.BeanZqin;
 import com.example.azheng.rxjavamvpdemo.bean.LoginBean;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -21,10 +20,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
-import retrofit2.http.Url;
 
 /**
  * 创 建 人 PeaceJay
@@ -58,6 +54,14 @@ public interface APIService {
     /*检查手机号*/
     @GET("/user/inspect")
     Flowable<BaseObjectBean<BeanPhone>> phone(@Query("phone") String phone);
+
+    /*家庭圈列表*/
+    @GET("/familyGroup/own")
+    Flowable<BaseArrayBean<BeanFamily>> family();
+
+    /*解散家庭圈*/
+    @GET("/familyGroup/dismiss")
+    Flowable<BaseObjectBean> delete(@Query("number") String number);
 
 
 

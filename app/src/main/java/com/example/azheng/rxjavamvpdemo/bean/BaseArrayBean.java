@@ -12,36 +12,56 @@ import java.util.List;
 public class BaseArrayBean<T> {
 
     /**
-     * status : 1
-     * msg : 获取成功
-     * result : [] 数组
+     * msg : 成功
+     * state : true
+     * data : []
+     * code : 000
+     * exception :
      */
 
-    private int errorCode;
-    private String errorMsg;
-    private List<T> result;
+    private String msg;
+    private boolean state;
+    private String code;
+    private String exception;
+    private List<T> data;
 
-    public int getErrorCode() {
-        return errorCode;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public boolean isState() {
+        return state;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public void setState(boolean state) {
+        this.state = state;
     }
 
-    public List<T> getResult() {
-        return result;
+    public String getCode() {
+        return code;
     }
 
-    public void setResult(List<T> result) {
-        this.result = result;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getException() {
+        return exception;
+    }
+
+    public void setException(String exception) {
+        this.exception = exception;
+    }
+
+    public List<?> getData() {
+        return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data =  data;
     }
 }
