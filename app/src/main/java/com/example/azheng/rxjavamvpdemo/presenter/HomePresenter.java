@@ -15,6 +15,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -412,13 +413,15 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
             if (!TextUtils.isEmpty(pathItem)) {
                 File file = new File(pathItem);
                 MultipartBody.Builder builder = new MultipartBody.Builder()
-                        .setType(MultipartBody.FORM)//表单类型
-                        .addFormDataPart(name,"")
-                        .addFormDataPart(precept,"");
+                        .setType(MultipartBody.FORM);//表单类型
+//                        .addFormDataPart("name",name)
+//                        .addFormDataPart("precept",precept);
                 RequestBody photoRequestBody = RequestBody.create(MediaType.parse("image/jpg"), file);
                 builder.addFormDataPart("file", file.getName(), photoRequestBody);
                 List<MultipartBody.Part> parts = builder.build().parts();
-                upLoadImages(name,precept, parts);
+
+                Log.e("111111", ""+name +"|"+precept);
+                upLoadImages(name,precept,parts);
             }
         }
     }

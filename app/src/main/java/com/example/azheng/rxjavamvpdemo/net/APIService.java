@@ -86,8 +86,8 @@ public interface APIService {
     * */
     @Multipart
     @POST("/familyGroup/create")
-    Flowable<BaseObjectBean> upLoadImages(@Part("name") String name,
-                                          @Part("precept") String precept,
+    Flowable<BaseObjectBean> upLoadImages(@Query("name") String name,
+                                          @Query("precept") String precept,
                                           @Part List<MultipartBody.Part> part);
 
     /*注释  多图上传很简单  参数改为List<MultipartBody.Part>  图片名称+时间遍历*/
