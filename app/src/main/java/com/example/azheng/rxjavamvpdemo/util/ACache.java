@@ -52,8 +52,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author Michael Yang（www.yangfuhai.com） update at 2013.08.07
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
  */
+
 public class ACache {
 	public static final int TIME_HOUR = 60 * 60;
 	public static final int TIME_DAY = TIME_HOUR * 24;

@@ -17,17 +17,24 @@ import okhttp3.RequestBody;
 /**
  * 创 建 人 PeaceJay
  * 创建时间 2019/9/9
+ * https://github.com/764990722
  * 类 描 述：
  */
 public interface HoneContract {
     interface Model {
         Flowable<BaseObjectBean<BeanPhone>> phone(String phone);
+
         Flowable<BaseArrayBean<BeanFamily>> family();
-        Flowable<BaseObjectBean> delete(String number,int position);
+
+        Flowable<BaseObjectBean> delete(String number, int position);
+
         Flowable<BaseObjectBean<BeanZqin>> name(String name);
+
         Flowable<BaseObjectBean> getAds(RequestBody requestBody);
+
         Flowable<BaseObjectBean> uploadFile(MultipartBody.Part body);
-        Flowable<BaseObjectBean> upLoadImages(String name,String precept,List<MultipartBody.Part> part);
+
+        Flowable<BaseObjectBean> upLoadImages(String name, String precept, List<MultipartBody.Part> part);
     }
 
     interface View extends BaseView {
@@ -71,7 +78,7 @@ public interface HoneContract {
         /**
          * 解散家庭圈
          */
-        void delete(String number,int position);
+        void delete(String number, int position);
 
         /**
          * 查找宗亲
@@ -91,7 +98,7 @@ public interface HoneContract {
         /**
          * 多图上传代参数
          */
-        void upLoadImages(String name,String precept,List<MultipartBody.Part> part);
+        void upLoadImages(String name, String precept, List<MultipartBody.Part> part);
 
     }
 }

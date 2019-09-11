@@ -5,8 +5,9 @@ import android.annotation.SuppressLint;
 /**
  * 创 建 人 PeaceJay
  * 创建时间 2019/9/9
- * 类 描 述：
+ * https://github.com/764990722
  */
+
 public class AppValue {
 
     public static final int CROP_PICTURE = 2;//裁剪后图片返回码

@@ -17,12 +17,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author azheng
- * @date 2018/4/17.
- * GitHub：https://github.com/RookieExaminer
- * email：wei.azheng@foxmail.com
- * description：
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
  */
+
 public class RetrofitClient {
 
     private static volatile RetrofitClient instance;

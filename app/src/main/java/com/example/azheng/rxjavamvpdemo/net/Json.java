@@ -3,8 +3,9 @@ package com.example.azheng.rxjavamvpdemo.net;
 import com.google.gson.Gson;
 
 /**
- * 创建时间: 2017/3/20.
- * 类 描 述: JSON操作的类
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
  */
 
 public class Json {

@@ -18,8 +18,9 @@ import com.example.azheng.rxjavamvpdemo.util.AppValue;
 /**
  * 创 建 人 PeaceJay
  * 创建时间 2019/9/9
- * 类 描 述：
+ * https://github.com/764990722
  */
+
 public class SplashActivity extends BaseMvpActivity<MainPresenter> implements MainContract.View  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

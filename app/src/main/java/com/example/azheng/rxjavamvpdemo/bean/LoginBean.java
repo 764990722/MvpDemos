@@ -4,11 +4,10 @@ import java.util.List;
 
 
 /**
- * @author CuiZhen
- * @date 2019/5/8
- * QQ: 302833254
- * E-mail: goweii@163.com
- * GitHub: https://github.com/goweii
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
+ * 类 描 述：
  */
 public class LoginBean{
 

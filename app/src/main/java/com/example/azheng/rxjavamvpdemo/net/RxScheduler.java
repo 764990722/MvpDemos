@@ -12,12 +12,11 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * @author azheng
- * @date 2018/4/16.
- * GitHub：https://github.com/RookieExaminer
- * email：wei.azheng@foxmail.com
- * description：RXjava 线程调度
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
  */
+
 public class RxScheduler {
 
     /**

@@ -1,11 +1,10 @@
 package com.example.azheng.rxjavamvpdemo.base;
 
 /**
- * @author azheng
- * @date 2018/4/24.
- * GitHub：https://github.com/RookieExaminer
- * Email：wei.azheng@foxmail.com
- * Description：
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
+ * 类 描 述：
  */
 public abstract class BaseMvpFragment<T extends BasePresenter>  extends BaseFragment implements BaseView{
 

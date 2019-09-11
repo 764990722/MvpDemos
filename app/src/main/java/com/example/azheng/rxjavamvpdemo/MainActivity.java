@@ -25,6 +25,11 @@ import butterknife.OnClick;
 
 import static com.example.azheng.rxjavamvpdemo.net.Json.toJson;
 
+/**
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
+ */
 
 public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainContract.View {
 

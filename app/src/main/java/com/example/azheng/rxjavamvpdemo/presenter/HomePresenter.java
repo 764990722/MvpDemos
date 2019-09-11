@@ -55,8 +55,9 @@ import okhttp3.RequestBody;
 /**
  * 创 建 人 PeaceJay
  * 创建时间 2019/9/9
- * 类 描 述：
+ * https://github.com/764990722
  */
+
 public class HomePresenter extends BasePresenter<HoneContract.View> implements HoneContract.Presenter {
 
     private HoneContract.Model model;
@@ -81,12 +82,12 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
         model.phone(phone)
                 .compose(RxScheduler.<BaseObjectBean<BeanPhone>>Flo_io_main())
                 .as(mView.<BaseObjectBean<BeanPhone>>bindAutoDispose())
-                .subscribe(new Consumer<BaseObjectBean<BeanPhone>>(){
+                .subscribe(new Consumer<BaseObjectBean<BeanPhone>>() {
                     @Override
                     public void accept(BaseObjectBean<BeanPhone> bean) throws Exception {
                         mView.hideLoading();
-                        if (bean!=null){
-                            switch (bean.getCode()){
+                        if (bean != null) {
+                            switch (bean.getCode()) {
                                 case "000":
                                     mView.onSuccess(bean);
                                     break;
@@ -115,12 +116,12 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
         model.family()
                 .compose(RxScheduler.<BaseArrayBean<BeanFamily>>Flo_io_main())
                 .as(mView.<BaseArrayBean<BeanFamily>>bindAutoDispose())
-                .subscribe(new Consumer<BaseArrayBean<BeanFamily>>(){
+                .subscribe(new Consumer<BaseArrayBean<BeanFamily>>() {
                     @Override
                     public void accept(BaseArrayBean<BeanFamily> bean) throws Exception {
                         mView.hideLoading();
-                        if (bean!=null){
-                            switch (bean.getCode()){
+                        if (bean != null) {
+                            switch (bean.getCode()) {
                                 case "000":
                                     mView.onSuccess5(bean);
                                     break;
@@ -141,23 +142,23 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
 
     /*解散家庭圈*/
     @Override
-    public void delete(String number,final int position) {
+    public void delete(String number, final int position) {
         if (!isViewAttached()) {
             return;
         }
         mView.showLoading();
-        model.delete(number,position)
+        model.delete(number, position)
                 .compose(RxScheduler.<BaseObjectBean>Flo_io_main())
                 .as(mView.<BaseObjectBean>bindAutoDispose())
-                .subscribe(new Consumer<BaseObjectBean>(){
+                .subscribe(new Consumer<BaseObjectBean>() {
                     @Override
                     public void accept(BaseObjectBean bean) throws Exception {
                         mView.hideLoading();
-                        if (bean!=null){
-                            switch (bean.getCode()){
+                        if (bean != null) {
+                            switch (bean.getCode()) {
                                 case "000":
                                     mView.onSuccess6(bean);
-                                    if (bookAdapter!=null){
+                                    if (bookAdapter != null) {
                                         bookAdapter.removeList(position);
                                     }
                                     break;
@@ -188,12 +189,12 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
         model.name(name)
                 .compose(RxScheduler.<BaseObjectBean<BeanZqin>>Flo_io_main())
                 .as(mView.<BaseObjectBean<BeanZqin>>bindAutoDispose())
-                .subscribe(new Consumer<BaseObjectBean<BeanZqin>>(){
+                .subscribe(new Consumer<BaseObjectBean<BeanZqin>>() {
                     @Override
                     public void accept(BaseObjectBean<BeanZqin> bean) throws Exception {
                         mView.hideLoading();
-                        if (bean!=null){
-                            switch (bean.getCode()){
+                        if (bean != null) {
+                            switch (bean.getCode()) {
                                 case "000":
                                     mView.onSuccess1(bean);
                                     break;
@@ -223,12 +224,12 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
         model.getAds(request)
                 .compose(RxScheduler.<BaseObjectBean>Flo_io_main())
                 .as(mView.<BaseObjectBean>bindAutoDispose())
-                .subscribe(new Consumer<BaseObjectBean>(){
+                .subscribe(new Consumer<BaseObjectBean>() {
                     @Override
                     public void accept(BaseObjectBean bean) throws Exception {
                         mView.hideLoading();
-                        if (bean!=null){
-                            switch (bean.getCode()){
+                        if (bean != null) {
+                            switch (bean.getCode()) {
                                 case "000":
                                     mView.onSuccess2(bean);
                                     break;
@@ -257,12 +258,12 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
         model.uploadFile(body)
                 .compose(RxScheduler.<BaseObjectBean>Flo_io_main())
                 .as(mView.<BaseObjectBean>bindAutoDispose())
-                .subscribe(new Consumer<BaseObjectBean>(){
+                .subscribe(new Consumer<BaseObjectBean>() {
                     @Override
                     public void accept(BaseObjectBean bean) throws Exception {
                         mView.hideLoading();
-                        if (bean!=null){
-                            switch (bean.getCode()){
+                        if (bean != null) {
+                            switch (bean.getCode()) {
                                 case "000":
                                     mView.onSuccess3(bean);
                                     break;
@@ -284,20 +285,20 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
 
     /*多图上传*/
     @Override
-    public void upLoadImages(String name,String precept,List<MultipartBody.Part> part) {
+    public void upLoadImages(String name, String precept, List<MultipartBody.Part> part) {
         if (!isViewAttached()) {
             return;
         }
         mView.showLoading();
-        model.upLoadImages(name,precept,part)
+        model.upLoadImages(name, precept, part)
                 .compose(RxScheduler.<BaseObjectBean>Flo_io_main())
                 .as(mView.<BaseObjectBean>bindAutoDispose())
-                .subscribe(new Consumer<BaseObjectBean>(){
+                .subscribe(new Consumer<BaseObjectBean>() {
                     @Override
                     public void accept(BaseObjectBean bean) throws Exception {
                         mView.hideLoading();
-                        if (bean!=null){
-                            switch (bean.getCode()){
+                        if (bean != null) {
+                            switch (bean.getCode()) {
                                 case "000":
                                     mView.onSuccess4(bean);
                                     break;
@@ -316,49 +317,50 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
                 });
     }
 
-    public void getFrom(Activity activity,boolean IsMulti,int Number) {
+    public void getFrom(Activity activity, boolean IsMulti, int Number) {
         this.IsMulti = IsMulti;
         this.Number = Number;
-        requestPermission(Permission.Group.CAMERA,Permission.Group.STORAGE,activity);
+        requestPermission(Permission.Group.CAMERA, Permission.Group.STORAGE, activity);
     }
 
 
-    public void getzhImag(final Intent data,Activity activity) {
-        try{
+    public void getzhImag(final Intent data, Activity activity) {
+        try {
             List<Uri> mSelected = Matisse.obtainResult(data);
             for (Uri imageUri : mSelected) {
-                startPhotoZoom(imageUri,activity);
+                startPhotoZoom(imageUri, activity);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void getjtImag(final Intent data, Activity activity, ImageView iv_herd,List<String> imgsPath,String name,String precept) {
+    public void getjtImag(final Intent data, Activity activity, ImageView iv_herd, List<String> imgsPath, String name, String precept) {
         if (data != null) {
             Bundle extras = data.getExtras();
             if (extras != null) {
                 try {
                     Bitmap photo = extras.getParcelable("data");
-                    saveBitmap(photo,imgsPath);
+                    saveBitmap(photo, imgsPath);
                     iv_herd.setImageBitmap(photo);
-                    if (!IsMulti){
+                    if (!IsMulti) {
                         FileImage(imgsPath);
                     } else {
-                        FileImage(imgsPath,name,precept);
+                        FileImage(imgsPath, name, precept);
                     }
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
             }
         }
         try {
             Bitmap headShot = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(cropImageUri));
             if (headShot != null) {
-                saveBitmap(headShot,imgsPath);
+                saveBitmap(headShot, imgsPath);
                 iv_herd.setImageBitmap(headShot);
-                if (!IsMulti){
+                if (!IsMulti) {
                     FileImage(imgsPath);
                 } else {
-                    FileImage(imgsPath,name,precept);
+                    FileImage(imgsPath, name, precept);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -378,23 +380,23 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
     }
 
 
-    public void familyList(final Activity activity, RecyclerView rv_mr_all, final BaseArrayBean<BeanFamily> bean){
+    public void familyList(final Activity activity, RecyclerView rv_mr_all, final BaseArrayBean<BeanFamily> bean) {
         rv_mr_all.setFocusable(true);//解决显示位置
         rv_mr_all.setNestedScrollingEnabled(true);
         rv_mr_all.setLayoutManager(new LinearLayoutManager(activity));
-        bookAdapter = new FamilyAdapter(bean.getData(),activity);
+        bookAdapter = new FamilyAdapter(bean.getData(), activity);
         rv_mr_all.setAdapter(bookAdapter);
         bookAdapter.buttonSetOnclick(new FamilyAdapter.ButtonInterface() {
             @Override
             public void onclick(View view, int position) {
-                Toast.makeText(activity, "单点下标："+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "单点下标：" + position, Toast.LENGTH_SHORT).show();
             }
         });
 
         bookAdapter.setOnRecyclerViewItemClickListener(new FamilyAdapter.OnItemClickListener() {
             @Override
             public void onLongClick(int position) {
-                Toast.makeText(activity, "长按下标："+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "长按下标：" + position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -402,7 +404,7 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
             @Override
             public void onclick(View view, int position) {
                 BeanFamily data = (BeanFamily) bean.getData().get(position);
-                delete(data.getNumber(),position);
+                delete(data.getNumber(), position);
             }
         });
     }
@@ -420,23 +422,23 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
                 builder.addFormDataPart("file", file.getName(), photoRequestBody);
                 List<MultipartBody.Part> parts = builder.build().parts();
 
-                Log.e("111111", ""+name +"|"+precept);
-                upLoadImages(name,precept,parts);
+                Log.e("111111", "" + name + "|" + precept);
+                upLoadImages(name, precept, parts);
             }
         }
     }
 
 
-    private void requestPermission(String[] CAMERA,String[] CONTACTS, final Activity activity) {
+    private void requestPermission(String[] CAMERA, String[] CONTACTS, final Activity activity) {
         AndPermission.with(activity)
                 .runtime()
-                .permission(CAMERA,CONTACTS)
+                .permission(CAMERA, CONTACTS)
                 .rationale(new RuntimeRationale())
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
                         //成功
-                        callGallery(true,activity);
+                        callGallery(true, activity);
                     }
                 })
                 .onDenied(new Action<List<String>>() {
@@ -445,7 +447,7 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
                         //失败
                         //拒绝的权限需要手动开启
                         if (AndPermission.hasAlwaysDeniedPermission(activity, permissions)) {
-                            callGallery(false,activity);
+                            callGallery(false, activity);
                         }
                     }
                 })
@@ -456,7 +458,7 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
     /**
      * 调用图库选择
      */
-    private void callGallery(boolean isok,Activity activity){
+    private void callGallery(boolean isok, Activity activity) {
         Matisse.from(activity)
                 .choose(MimeType.of(MimeType.JPEG, MimeType.PNG, MimeType.GIF))//照片视频全部显示MimeType.allOf()
                 .countable(true)//true:选中后显示数字;false:选中后显示对号
@@ -469,7 +471,7 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
                 .imageEngine(new MyGlideEngine())//图片加载方式，Glide4需要自定义实现
                 .capture(isok) //是否提供拍照功能，兼容7.0系统需要下面的配置
                 //参数1 true表示拍照存储在共有目录，false表示存储在私有目录；参数2与 AndroidManifest中authorities值相同，用于适配7.0系统 必须设置
-                .captureStrategy(new CaptureStrategy(false,"com.example.azheng.rxjavamvpdemo.fileprovider"))//存储到哪里
+                .captureStrategy(new CaptureStrategy(false, "com.example.azheng.rxjavamvpdemo.fileprovider"))//存储到哪里
                 .forResult(AppValue.REQUEST_CODE_CHOOSE);//请求码
     }
 
@@ -480,17 +482,18 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
      */
     //裁剪图片存放地址的Uri
     private Uri cropImageUri;
-    protected void startPhotoZoom(Uri uri,Activity activity) {
-        File CropPhoto=new File(activity.getExternalCacheDir(),"crop_Family_image.jpg");
-        try{
-            if(CropPhoto.exists()){
+
+    protected void startPhotoZoom(Uri uri, Activity activity) {
+        File CropPhoto = new File(activity.getExternalCacheDir(), "crop_Family_image.jpg");
+        try {
+            if (CropPhoto.exists()) {
                 CropPhoto.delete();
             }
             CropPhoto.createNewFile();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        cropImageUri=Uri.fromFile(CropPhoto);
+        cropImageUri = Uri.fromFile(CropPhoto);
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -515,7 +518,7 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
      *
      * @param bitmap
      */
-    public void saveBitmap(Bitmap bitmap,List<String> imgsPath) {
+    public void saveBitmap(Bitmap bitmap, List<String> imgsPath) {
         String imgPath = AppValue.userXIXPath + "crop_Family_image.jpg";
         File f = new File(imgPath);
         if (f.exists()) {
@@ -544,11 +547,11 @@ public class HomePresenter extends BasePresenter<HoneContract.View> implements H
 
     public void inMore(TextInputEditText edit_out_name, TextInputEditText edit_out_depict, Activity activity) {
         //isEmpty是否有元素  true为没有
-        if (TextUtils.isEmpty(edit_out_name.getText())){
+        if (TextUtils.isEmpty(edit_out_name.getText())) {
             Toast.makeText(activity, "昵称不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        getFrom(activity,true,1);
+        getFrom(activity, true, 1);
     }
 
 }

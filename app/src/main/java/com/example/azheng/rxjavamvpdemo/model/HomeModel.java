@@ -17,8 +17,8 @@ import okhttp3.RequestBody;
 
 /**
  * 创 建 人 PeaceJay
- * 创建时间 2019/9/9
- * 类 描 述：
+ * 创建时间 2019/3/19
+ * https://github.com/764990722
  */
 public class HomeModel implements HoneContract.Model {
     @Override
@@ -32,7 +32,7 @@ public class HomeModel implements HoneContract.Model {
     }
 
     @Override
-    public Flowable<BaseObjectBean> delete(String number,int position) {
+    public Flowable<BaseObjectBean> delete(String number, int position) {
         return RetrofitClient.getInstance().getApi("1.0.0").delete(number);
     }
 
@@ -52,8 +52,8 @@ public class HomeModel implements HoneContract.Model {
     }
 
     @Override
-    public Flowable<BaseObjectBean> upLoadImages(String name,String precept,List<MultipartBody.Part> part) {
-        return RetrofitClient.getInstance().getApi("1.0.0").upLoadImages(name,precept,part);
+    public Flowable<BaseObjectBean> upLoadImages(String name, String precept, List<MultipartBody.Part> part) {
+        return RetrofitClient.getInstance().getApi("1.0.0").upLoadImages(name, precept, part);
     }
 
 }

@@ -9,11 +9,9 @@ import com.example.azheng.rxjavamvpdemo.net.RetrofitClient;
 import io.reactivex.Flowable;
 
 /**
- * @author azheng
- * @date 2018/6/4.
- * GitHub：https://github.com/RookieExaminer
- * Email：wei.azheng@foxmail.com
- * Description：
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/3/19
+ * https://github.com/764990722
  */
 public class MainModel implements MainContract.Model {
     @Override

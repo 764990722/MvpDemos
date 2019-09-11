@@ -24,8 +24,8 @@ import retrofit2.http.Query;
 
 /**
  * 创 建 人 PeaceJay
- * 创建时间 2019/9/9
- * 类 描 述：
+ * 创建时间 2019/3/19
+ * https://github.com/764990722
  * 注解@FormUrlEncoded对所传地址进行编码解析
  */
 public interface APIService {
@@ -36,7 +36,7 @@ public interface APIService {
     @FormUrlEncoded
     @POST("/login/password")
     Flowable<BaseObjectBean<LoginBean>> login(@Field("phone") String username,
-                                             @Field("password") String password);
+                                              @Field("password") String password);
 
     /*自动登录*/
     @FormUrlEncoded
@@ -64,13 +64,11 @@ public interface APIService {
     Flowable<BaseObjectBean> delete(@Query("number") String number);
 
 
-
     //////////////////JSON/////////////////////
     //////////////////JSON/////////////////////
     /*列表排序json*/
     @POST("/familyGroup/reorder")
     Flowable<BaseObjectBean> getAds(@Body RequestBody requestBody);
-
 
 
     //////////////////From/////////////////////

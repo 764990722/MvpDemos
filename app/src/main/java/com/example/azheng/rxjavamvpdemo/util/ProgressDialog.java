@@ -6,12 +6,11 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.azheng.rxjavamvpdemo.R;
 
 /**
- * @author azheng
- * @date 2018/5/24.
- * GitHub：https://github.com/RookieExaminer
- * Email：wei.azheng@foxmail.com
- * Description：圆形进度条Dialog
+ * 创 建 人 PeaceJay
+ * 创建时间 2019/9/9
+ * https://github.com/764990722
  */
+
 public class ProgressDialog {
 
     private static volatile ProgressDialog instance;
