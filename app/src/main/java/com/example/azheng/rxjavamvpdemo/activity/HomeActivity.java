@@ -2,11 +2,14 @@ package com.example.azheng.rxjavamvpdemo.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ import com.example.azheng.rxjavamvpdemo.contract.HoneContract;
 import com.example.azheng.rxjavamvpdemo.presenter.HomePresenter;
 import com.example.azheng.rxjavamvpdemo.util.AppValue;
 import com.example.azheng.rxjavamvpdemo.util.ProgressDialog;
+import com.example.azheng.rxjavamvpdemo.util.SnackbarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,34 +81,37 @@ public class HomeActivity extends BaseMvpActivity<HomePresenter> implements Hone
     @Override
     public void onSuccess(BaseObjectBean<BeanPhone> bean) {
         if (bean.getData().isRegister()) {
-            Toast.makeText(this, "已注册", Toast.LENGTH_SHORT).show();
+            SnackbarUtil.showSnackbar(rv_mr_all,"已注册");
         } else {
-            Toast.makeText(this, "未注册", Toast.LENGTH_SHORT).show();
+            SnackbarUtil.showSnackbar(rv_mr_all,"未注册");
         }
     }
+
+
+
 
     @Override
     public void onSuccess1(BaseObjectBean<BeanZqin> bean) {
         if (bean.getData().getUsers().size() == 0) {
-            Toast.makeText(this, "未找到", Toast.LENGTH_SHORT).show();
+            SnackbarUtil.showSnackbar(rv_mr_all,"未找到");
         } else {
-            Toast.makeText(this, "" + bean.getData().getUsers().get(0).getName(), Toast.LENGTH_SHORT).show();
+            SnackbarUtil.showSnackbar(rv_mr_all,bean.getData().getUsers().get(0).getName());
         }
     }
 
     @Override
     public void onSuccess2(BaseObjectBean bean) {
-        Toast.makeText(this, "上传json" + bean.getMsg(), Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(rv_mr_all,"上传json" + bean.getMsg());
     }
 
     @Override
     public void onSuccess3(BaseObjectBean bean) {
-        Toast.makeText(this, "单图上传" + bean.getMsg(), Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(rv_mr_all,"单图上传" + bean.getMsg());
     }
 
     @Override
     public void onSuccess4(BaseObjectBean bean) {
-        Toast.makeText(this, "单图带参上传" + bean.getMsg(), Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(rv_mr_all,"单图带参上传" + bean.getMsg());
         mPresenter.family();
     }
 
@@ -116,13 +123,13 @@ public class HomeActivity extends BaseMvpActivity<HomePresenter> implements Hone
 
     @Override
     public void onSuccess6(BaseObjectBean bean) {
-        Toast.makeText(this, "解散或退出" + bean.getMsg(), Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(rv_mr_all,"解散或退出" + bean.getMsg());
     }
 
 
     @Override
     public void onFailed(String msg) {
-        Toast.makeText(this, "onFailed:" + msg, Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(rv_mr_all,"onFailed:" + msg);
     }
 
     @Override
@@ -137,7 +144,7 @@ public class HomeActivity extends BaseMvpActivity<HomePresenter> implements Hone
 
     @Override
     public void onError(Throwable throwable) {
-        Toast.makeText(this, "onError:" + throwable.toString(), Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(rv_mr_all,"onError:" + throwable.toString());
         Log.e("onError", throwable.toString());
     }
 

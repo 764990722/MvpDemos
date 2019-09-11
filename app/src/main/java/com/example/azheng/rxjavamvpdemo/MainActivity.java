@@ -18,6 +18,7 @@ import com.example.azheng.rxjavamvpdemo.util.ACache;
 import com.example.azheng.rxjavamvpdemo.util.AppValue;
 import com.example.azheng.rxjavamvpdemo.util.MD5Utils;
 import com.example.azheng.rxjavamvpdemo.util.ProgressDialog;
+import com.example.azheng.rxjavamvpdemo.util.SnackbarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,7 +72,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
 
     @Override
     public void onSuccess(BaseObjectBean<LoginBean> bean) {
-        Toast.makeText(this,"onSuccess:" + bean.getMsg(), Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(etUsernameLogin,"onSuccess:" + bean.getMsg());
         ACache mCache = ACache.get(this);
         mCache.put("password",toJson(bean.getData()), 60*60*24*30*12);
         String value = mCache.getAsString("password");
@@ -92,7 +93,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
 
     @Override
     public void onFailed(String msg) {
-        Toast.makeText(this,"onFailed:" + msg, Toast.LENGTH_SHORT).show();
+        SnackbarUtil.showSnackbar(etUsernameLogin,"onFailed:" + msg);
     }
 
     @Override
@@ -107,7 +108,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
 
     @Override
     public void onError(Throwable throwable) {
-        Toast.makeText(this, "onError:" +throwable.toString(), Toast.LENGTH_SHORT).show();
+
+        SnackbarUtil.showSnackbar(etUsernameLogin,"onError:" +throwable.toString());
     }
 
     @Override
@@ -118,7 +120,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
     @OnClick(R.id.btn_signin_login)
     public void onViewClicked() {
         if (getUsername().isEmpty() || getPassword().isEmpty()) {
-            Toast.makeText(this, "帐号密码不能为空", Toast.LENGTH_SHORT).show();
+            SnackbarUtil.showSnackbar(etUsernameLogin,"帐号密码不能为空");
             return;
         }
         mPresenter.login(getUsername(), getPassword());
